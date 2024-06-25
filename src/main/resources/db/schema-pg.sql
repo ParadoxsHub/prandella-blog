@@ -6,7 +6,7 @@ CREATE TABLE version
     version BIGINT NULL DEFAULT NULL ,
     CreateAt timestamp NULL DEFAULT NULL ,
     PRIMARY KEY (id)
-););
+);
 
 -- 用户表
 create table if not exists "user"
