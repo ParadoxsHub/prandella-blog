@@ -1,67 +1,59 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.github.paradoxshub.prandellablog.mapper.UserMapper">
-    <select id="searchUserById" resultType="com.github.paradoxshub.prandellablog.entity.User">
-        select * from user where id = #{id} if exists(select * from user where id=#{id})
+<mapper namespace="com.github.paradoxshub.prandellablog.mappers.UserMapper">
 
-    </select>
-
-    <select id="searchUserByUsername" resultType="com.github.paradoxshub.prandellablog.entity.User">
-
-        select * from user where username = #{username} if exists(select * from user where username=#{username})
-
-    </select>
-
-    <select id="searchUserByEmail" resultType="com.github.paradoxshub.prandellablog.entity.User">
-
-        select * from user where email = #{email} if exists(select * from user where email=#{email})
-
-    </select>
-
-    <select id="searchUserByPhoneNumber" resultType="com.github.paradoxshub.prandellablog.entity.User">
-
-        select * from user where phoneNumber = #{phoneNumber} if exists(select * from user where phoneNumber=#{phoneNumber})
-
-    </select>
-
-    <insert id="addUser" parameterType="com.github.paradoxshub.prandellablog.entity.User">
-
-        insert into user(username,password,email,phoneNumber) values(#{username},#{password},#{email},#{phoneNumber}) if not exists(select * from user where username=#{username})
-
+    <insert id="insertUser" parameterType="com.github.paradoxshub.prandellablog.entity.User"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        insert into "user" (username, nickname, password, email, created_at, updated_at,
+                            created_by, updated_by)
+        values (#{username,jdbcType=VARCHAR},
+                #{nickname},
+                #{password},
+                #{email},
+                #{created_at},
+                #{updated_at},
+                #{created_by},
+                #{updated_by});
     </insert>
 
+<!--    <select id="searchUserById" resultType="com.github.paradoxshub.prandellablog.entity.User">-->
+<!--        select * from user where id = #{id}-->
+<!--    </select>-->
 
-    <update id="updateUser" parameterType="com.github.paradoxshub.prandellablog.entity.User">
+<!--    <select id="searchUserByUsername" resultType="com.github.paradoxshub.prandellablog.entity.User">-->
+<!--        select * from user where username = #{username}-->
+<!--    </select>-->
 
-        update user set username=#{username},password=#{password},email=#{email},phoneNumber=#{phoneNumber} where id=#{id} if exists(select * from user where id=#{id})
+<!--    <select id="searchUserByEmail" resultType="com.github.paradoxshub.prandellablog.entity.User">-->
+<!--        select * from user where email = #{email}-->
+<!--    </select>-->
 
-    </update>
+<!--    <select id="searchUserByPhoneNumber" resultType="com.github.paradoxshub.prandellablog.entity.User">-->
+<!--        select * from user where phoneNumber = #{phoneNumber}-->
+<!--    </select>-->
 
-    <delete id="deleteUserByIdAndPassword" parameterType="int">
+<!--    <update id="updateUser" parameterType="com.github.paradoxshub.prandellablog.entity.User">-->
+<!--        update user set username=#{username},password=#{password},email=#{email},phoneNumber=#{phoneNumber} where id=#{id}-->
+<!--    </update>-->
 
-        delete from user where id=#{id} and password=#{password} if exists(select * from user where id=#{id})
-
-    </delete>
-
-
-    <delete id="deleteUserByUsernameAndPassword" parameterType="com.github.paradoxshub.prandellablog.entity.User">
-
-        delete * from user where username = #{username} and password = #{password} if exists(select * from user where username=#{username})
-
-    </delete>
-
-    <delete id="deleteUserByEmailAndPassword" parameterType="com.github.paradoxshub.prandellablog.entity.User">
-
-        delete * from user where email = #{email} and password = #{password} if exists(select * from user where email=#{email})
-
-    </delete>
+<!--    <delete id="deleteUserByIdAndPassword" parameterType="int">-->
+<!--        delete from user where id=#{id} and password=#{password}-->
+<!--    </delete>-->
 
 
-    <delete id="deleteUserByPhoneNumberAndPassword" parameterType="com.github.paradoxshub.prandellablog.entity.User">
+<!--    <delete id="deleteUserByUsernameAndPassword" parameterType="com.github.paradoxshub.prandellablog.entity.User">-->
+<!--        delete * from user where username = #{username} and password = #{password}-->
+<!--    </delete>-->
 
-        delete * from user where phoneNumber = #{phoneNumber} and password = #{password} if exists(select * from user where phoneNumber=#{phoneNumber})
+<!--    <delete id="deleteUserByEmailAndPassword" parameterType="com.github.paradoxshub.prandellablog.entity.User">-->
+<!--        delete * from user where email = #{email} and password = #{password}-->
+<!--    </delete>-->
 
-    </delete>
+
+<!--    <delete id="deleteUserByPhoneNumberAndPassword" parameterType="com.github.paradoxshub.prandellablog.entity.User">-->
+<!--        delete * from user where phoneNumber = #{phoneNumber} and password = #{password}-->
+<!--    </delete>-->
 
 
 </mapper>

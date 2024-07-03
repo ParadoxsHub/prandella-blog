@@ -1,16 +1,22 @@
 package com.github.paradoxshub.prandellablog.Input;
 
-public class AddUserInput {
-    private String username;
-    private String password;
-    private String email;
-    private String phone_number;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-    public AddUserInput(String username, String password, String email, String phone_number) {
+public class InsertUserInput {
+
+    @JsonProperty(value = "username")
+    private String username;
+
+    @JsonProperty(value = "password")
+    private String password;
+
+    @JsonProperty(value = "email")
+    private String email;
+
+    public InsertUserInput(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.phone_number = phone_number;
     }
 
     public String getUsername() {
@@ -35,13 +41,5 @@ public class AddUserInput {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPhone_number() {
-        return phone_number;
-    }
-
-    public void setPhone_number(String phone_number) {
-        this.phone_number = phone_number;
     }
 }
