@@ -8,8 +8,6 @@ import com.github.paradoxshub.prandellablog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
-import java.time.Instant;
 
 
 @Service
@@ -31,8 +29,6 @@ public class UserServiceImpl implements UserService {
         user.setPassword(input.getPassword());
         user.setEmail(input.getEmail());
         user.setNickname(input.getUsername());
-        user.setCreated_at(Timestamp.from(Instant.now()));
-        user.setUpdated_at(Timestamp.from(Instant.now()));
         user.setCreated_by(0L);
         user.setUpdated_by(0L);
 
