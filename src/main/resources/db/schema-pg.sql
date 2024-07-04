@@ -29,3 +29,5 @@ create table if not exists "user"
     avatar text,
     primary key(id)
 );
+
+-- 登录历史记录
