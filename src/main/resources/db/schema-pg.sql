@@ -11,7 +11,7 @@ CREATE TABLE version
 -- 用户表
 create table if not exists "user"
 (
-    id bigint not null,
+    id bigint not null ,
     username varchar(16) not null,
     nickname varchar(16) not null,
     password varchar(1024) not null,
@@ -31,3 +31,12 @@ create table if not exists "user"
 );
 
 -- 登录历史记录
+CREATE TABLE if not exists "login_history"(
+    id BIGINT NOT NULL PRIMARY KEY ,
+    user_id BIGINT NOT NULL,
+    user_agent VARCHAR(255),
+    login_at TIMESTAMP NOT NULL ,
+    ip_address VARCHAR(45) NOT NULL,
+    login_success BOOLEAN NOT NULL DEFAULT TRUE,
+    failure_reason VARCHAR(255)
+);
