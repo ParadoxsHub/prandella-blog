@@ -1,4 +1,4 @@
-package com.github.paradoxshub.prandellablog.Output;
+package com.github.paradoxshub.prandellablog.output;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.github.paradoxshub.prandellablog.common.ErrorCode;

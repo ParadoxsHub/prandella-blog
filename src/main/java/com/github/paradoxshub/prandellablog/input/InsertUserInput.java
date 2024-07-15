@@ -1,4 +1,4 @@
-package com.github.paradoxshub.prandellablog.Input;
+package com.github.paradoxshub.prandellablog.input;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
@@ -23,10 +23,20 @@ public class InsertUserInput {
     @Email
     private String email;
 
-    public InsertUserInput(String username, String password, String email) {
+    @JsonProperty(value = "nickname")
+    @NotBlank(message = "nickname is required")
+    @Pattern(regexp = "[a-zA-Z0-9]+")
+    private String nickname;
+
+    @JsonProperty(value = "gender")
+    private int gender;
+
+    public InsertUserInput(String username, String password, String email, String nickname,int gender) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.nickname = nickname;
+        this.gender = gender;
     }
 
     public String getUsername() {
@@ -51,5 +61,17 @@ public class InsertUserInput {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getNickname() {return nickname;}
+
+    public void setNickname(String nickname) {this.nickname = nickname;}
+
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
     }
 }

@@ -1,9 +1,11 @@
 package com.github.paradoxshub.prandellablog.controller;
 
-import com.github.paradoxshub.prandellablog.Input.InsertUserInput;
-import com.github.paradoxshub.prandellablog.Output.BaseResponse;
-import com.github.paradoxshub.prandellablog.Output.InsertUserOutput;
-import com.github.paradoxshub.prandellablog.Output.Response;
+import com.github.paradoxshub.prandellablog.common.ErrorCode;
+import com.github.paradoxshub.prandellablog.common.ErrorMessage;
+import com.github.paradoxshub.prandellablog.input.InsertUserInput;
+import com.github.paradoxshub.prandellablog.output.BaseResponse;
+import com.github.paradoxshub.prandellablog.output.InsertUserOutput;
+import com.github.paradoxshub.prandellablog.output.Response;
 import com.github.paradoxshub.prandellablog.service.UserService;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -43,12 +45,5 @@ public class UserController {
         return BaseResponse.ok(output);
     }
 
-//    @RequestMapping(value = "/api/v1/user/update",method = {RequestMethod.POST,RequestMethod.GET})
-//    @ResponseBody
-//    public String updateUser(
-//
-//    ){
-//
-//    }
 
 }
