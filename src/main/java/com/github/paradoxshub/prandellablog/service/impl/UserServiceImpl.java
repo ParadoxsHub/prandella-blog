@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
         System.out.println(count);
         return new InsertUserOutput(user.getId());
     }
-
+// 加个注释重新提交
 //    public List<User> updateUser() {
 //        return userMapper.updateUser();
 //    }
