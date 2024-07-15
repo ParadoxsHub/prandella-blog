@@ -1,7 +1,7 @@
 package com.github.paradoxshub.prandellablog.service.impl;
 
-import com.github.paradoxshub.prandellablog.Input.InsertUserInput;
-import com.github.paradoxshub.prandellablog.Output.InsertUserOutput;
+import com.github.paradoxshub.prandellablog.input.InsertUserInput;
+import com.github.paradoxshub.prandellablog.output.InsertUserOutput;
 import com.github.paradoxshub.prandellablog.entity.User;
 import com.github.paradoxshub.prandellablog.mappers.UserMapper;
 import com.github.paradoxshub.prandellablog.service.UserService;
@@ -28,7 +28,8 @@ public class UserServiceImpl implements UserService {
         user.setUsername(input.getUsername());
         user.setPassword(input.getPassword());
         user.setEmail(input.getEmail());
-        user.setNickname(input.getUsername());
+        user.setNickname(input.getNickname());
+        user.setGender(input.getGender());
         user.setCreated_by(0L);
         user.setUpdated_by(0L);
 

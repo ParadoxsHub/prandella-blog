@@ -12,16 +12,20 @@ public class User {
     private Long updated_by;
     private Timestamp created_at;
     private Timestamp updated_at;
-
+    private int gender;
 
     public User() {
     }
 
-    public User(Long id, String username, String password, String email) {
+
+    public User(Long id, String username, String password, String email, String nickname,int gender){
         this.username = username;
         this.id = id;
         this.password = password;
         this.email = email;
+        this.nickname = nickname;
+
+        this.gender = gender;
     }
 
     public String getUsername() {
@@ -94,5 +98,12 @@ public class User {
 
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
+    }
+
+    public int getGender() {
+        return gender;
+    }
+    public void setGender(int gender) {
+        this.gender = gender;
     }
 }

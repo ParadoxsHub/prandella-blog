@@ -1,7 +1,7 @@
 package com.github.paradoxshub.prandellablog.service;
 
-import com.github.paradoxshub.prandellablog.Input.InsertUserInput;
-import com.github.paradoxshub.prandellablog.Output.InsertUserOutput;
+import com.github.paradoxshub.prandellablog.input.InsertUserInput;
+import com.github.paradoxshub.prandellablog.output.InsertUserOutput;
 import org.springframework.stereotype.Service;
 
 @Service
