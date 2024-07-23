@@ -13,19 +13,20 @@ public class User {
     private Timestamp created_at;
     private Timestamp updated_at;
     private int gender;
+    private int age;
 
     public User() {
     }
 
 
-    public User(Long id, String username, String password, String email, String nickname,int gender){
+    public User(Long id, String username, String password, String email, String nickname,int gender,int age){
         this.username = username;
         this.id = id;
         this.password = password;
         this.email = email;
         this.nickname = nickname;
-
         this.gender = gender;
+        this.age = age;
     }
 
     public String getUsername() {
@@ -103,7 +104,12 @@ public class User {
     public int getGender() {
         return gender;
     }
+
     public void setGender(int gender) {
         this.gender = gender;
     }
+
+    public int getAge() {return age;}
+
+    public void setAge(int age) {this.age = age;}
 }

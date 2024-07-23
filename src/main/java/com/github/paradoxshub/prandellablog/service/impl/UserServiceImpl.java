@@ -32,47 +32,10 @@ public class UserServiceImpl implements UserService {
         user.setGender(input.getGender());
         user.setCreated_by(0L);
         user.setUpdated_by(0L);
+        user.setAge(input.getAge());
 
         Long count = userMapper.insertUser(user);
         System.out.println(count);
         return new InsertUserOutput(user.getId());
     }
-    //在加一个注释重新提交
-// 加个注释重新提交
-//    public List<User> updateUser() {
-//        return userMapper.updateUser();
-//    }
-//
-//
-//    public List<User> deleteUserByUsernameAndPassword() {
-//        return userMapper.deleteUserByUsernameAndPassword();
-//    }
-//
-//    public List<User> deleteUserByEmailAndPassword() {
-//        return userMapper.deleteUserByEmailAndPassword();
-//    }
-//
-//    public List<User> deleteUserByIdAndPassword() {
-//        return userMapper.deleteUserByIdAndPassword();
-//    }
-//
-//    public List<User> deleteUserByPhoneNumberAndPassword() {
-//        return userMapper.deleteUserByPhoneNumberAndPassword();
-//    }
-//
-//    public List<User> searchUserById() {
-//        return userMapper.searchUserById();
-//    }
-//
-//    public List<User> searchUserByEmail() {
-//        return userMapper.searchUserByEmail();
-//    }
-//
-//    public List<User> searchUserByUsername() {
-//        return userMapper.searchUserByUsername();
-//    }
-//
-//    public List<User> searchUserByPhoneNumber() {
-//        return userMapper.searchUserByPhoneNumber();
-//    }
 }

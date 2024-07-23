@@ -31,12 +31,18 @@ public class InsertUserInput {
     @JsonProperty(value = "gender")
     private int gender;
 
-    public InsertUserInput(String username, String password, String email, String nickname,int gender) {
+    @JsonProperty(value = "age")
+    @NotBlank(message = "Please enter your age")
+    @Pattern(regexp = "[0-99]")
+    private int age;
+
+    public InsertUserInput(String username, String password, String email, String nickname,int gender,int age) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.nickname = nickname;
         this.gender = gender;
+        this.age = age;
     }
 
     public String getUsername() {
@@ -73,5 +79,13 @@ public class InsertUserInput {
 
     public void setGender(int gender) {
         this.gender = gender;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 }

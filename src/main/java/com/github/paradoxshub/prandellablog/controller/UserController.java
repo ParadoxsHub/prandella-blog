@@ -32,15 +32,6 @@ public class UserController {
     public Response insertUser(
             @RequestBody @Validated InsertUserInput input
     ) {
-
-        // 这里检查参数格式，并调用service, 返回对象
-
-        // check param like
-        // 用户名长度小于5，则返回错误
-//        if (input.getUsername().length() < 5) {
-//            return new BaseResponse(ErrorCode.usernameIsTooShort, ErrorMessage.usernameIsTooShort);
-//        }
-
         InsertUserOutput output = userService.insertUser(input);
         return BaseResponse.ok(output);
     }
