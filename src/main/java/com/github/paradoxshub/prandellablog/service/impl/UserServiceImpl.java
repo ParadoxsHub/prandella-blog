@@ -33,6 +33,8 @@ public class UserServiceImpl implements UserService {
         user.setCreated_by(0L);
         user.setUpdated_by(0L);
         user.setAge(input.getAge());
+        user.setAdmin(input.admin());
+        user.setBan(false);
 
         Long count = userMapper.insertUser(user);
         System.out.println(count);

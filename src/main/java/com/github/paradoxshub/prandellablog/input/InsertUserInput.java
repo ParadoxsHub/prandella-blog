@@ -32,9 +32,10 @@ public class InsertUserInput {
     private int gender;
 
     @JsonProperty(value = "age")
-    @NotBlank(message = "Please enter your age")
-    @Pattern(regexp = "[0-99]")
     private int age;
+
+    @JsonProperty(value = "admin")
+    private boolean admin;
 
     public InsertUserInput(String username, String password, String email, String nickname,int gender,int age) {
         this.username = username;
@@ -87,5 +88,13 @@ public class InsertUserInput {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public boolean admin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+       this.admin = admin;
     }
 }

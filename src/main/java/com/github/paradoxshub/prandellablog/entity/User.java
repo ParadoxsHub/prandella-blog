@@ -14,6 +14,9 @@ public class User {
     private Timestamp updated_at;
     private int gender;
     private int age;
+    private boolean admin;
+    private boolean ban;
+    private String avatar;
 
     public User() {
     }
@@ -112,4 +115,28 @@ public class User {
     public int getAge() {return age;}
 
     public void setAge(int age) {this.age = age;}
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
+    public boolean isBan() {
+        return ban;
+    }
+
+    public void setBan(boolean ban) {
+        this.ban = ban;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 }

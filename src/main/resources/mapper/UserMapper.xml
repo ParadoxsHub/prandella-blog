@@ -6,7 +6,7 @@
             useGeneratedKeys="true"
             keyProperty="id">
         insert into "user" (username, nickname, password, email, created_at, updated_at,
-                            created_by, updated_by)
+                            created_by, updated_by, age, gender, is_admin, is_ban, avatar)
         values (#{username,jdbcType=VARCHAR},
                 #{nickname},
                 #{password},
@@ -14,7 +14,13 @@
                 now(),
                 now(),
                 #{created_by},
-                #{updated_by});
+                #{updated_by},
+                #{age},
+                #{gender},
+                #{admin},
+                #{ban},
+                #{avatar}
+                );
     </insert>
 
     <delete id="deleteUserById" parameterType="java.lang.Long">
