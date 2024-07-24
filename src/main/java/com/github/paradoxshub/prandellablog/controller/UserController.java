@@ -36,7 +36,8 @@ public class UserController {
         return BaseResponse.ok(output);
     }
 
-    @RequestMapping(value = "/api/v1/users/update", method = RequestMethod.POST)
+    // 修改 HTTP Method 用 PUT， 接口url里面不要加 动词
+    @RequestMapping(value = "/api/v1/users", method = RequestMethod.PUT)
     @ResponseBody
     public  Response updateUser(
             @RequestBody @Validated UpdateUserInput input){

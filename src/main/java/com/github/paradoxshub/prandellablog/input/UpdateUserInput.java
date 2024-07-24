@@ -7,6 +7,9 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class UpdateUserInput {
+    @JsonProperty(value = "id")
+    private Long id;
+
     @JsonProperty(value = "username")
     @NotBlank(message = "username is required")
     @Pattern(regexp = "[a-zA-Z0-9]+")
@@ -31,8 +34,6 @@ public class UpdateUserInput {
     private int gender;
 
     @JsonProperty(value = "age")
-    @NotBlank(message = "Please enter your age")
-    @Pattern(regexp = "[0-99]")
     private int age;
 
     public UpdateUserInput(String username, String password, String email, String nickname, int gender, int age) {
@@ -42,6 +43,14 @@ public class UpdateUserInput {
         this.nickname = nickname;
         this.gender = gender;
         this.age = age;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {

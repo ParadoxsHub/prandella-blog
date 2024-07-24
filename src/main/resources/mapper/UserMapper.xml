@@ -27,10 +27,17 @@
         delete from "user" where id = #{id};
     </delete>
 
-    <update id="updateUser" parameterType="com.github.paradoxshub.prandellablog.entity.User"
+    <update id="updateUserById" parameterType="com.github.paradoxshub.prandellablog.entity.User"
             keyProperty="id">
 
-        update "user" set username=#{username}, nickname=#{nickname}, password=#{password}, email=#{email}, updated_at=now(), updated_by=#{updated_by} where id=#{id};
+        update "user" set
+          username = #{username},
+          nickname = #{nickname},
+          password = #{password},
+          email = #{email},
+          updated_at=now(),
+          updated_by = #{updated_by}
+      where id=#{id};
     </update>
 
 </mapper>

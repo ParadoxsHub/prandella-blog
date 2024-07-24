@@ -46,6 +46,7 @@ public class UserServiceImpl implements UserService {
     public UpdateUserOutput updateUser(UpdateUserInput input) {
         // 这里写业务逻辑
 
+        // TODO: 这里先根据ID查询用户是否存在，如果不存在直接返回错误
         User user = new User();
         user.setUsername(input.getUsername());
         user.setPassword(input.getPassword());
@@ -56,7 +57,7 @@ public class UserServiceImpl implements UserService {
         user.setUpdated_by(0L);
         user.setAge(input.getAge());
 
-        Long count = userMapper.updateUser(user);
+        Long count = userMapper.updateUserById(user);
         System.out.println(count);
         return new UpdateUserOutput(user.getId());
     }

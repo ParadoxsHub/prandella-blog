@@ -12,7 +12,7 @@ public interface UserMapper {
     //添加新用户
     Long insertUser(User user);
     //修改用户
-    Long updateUser(User user);
+    Long updateUserById(User user);
 
     Long deleteUserById(@Param("id") Long id);
 
