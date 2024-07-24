@@ -34,6 +34,8 @@ public class UpdateUserInput {
     private int gender;
 
     @JsonProperty(value = "age")
+    @NotBlank(message = "Please enter your age")
+    @Pattern(regexp = "[0-99]")
     private int age;
 
     public UpdateUserInput(String username, String password, String email, String nickname, int gender, int age) {

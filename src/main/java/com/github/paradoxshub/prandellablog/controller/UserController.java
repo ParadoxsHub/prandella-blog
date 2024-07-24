@@ -25,8 +25,8 @@ public class UserController {
     }
 
     @ApiResponse(responseCode = "200", description = "insert a user success",
-            content = {@Content(mediaType = "application/json",
-                    schema = @Schema(implementation = InsertUserOutput.class))})
+            content = { @Content(mediaType = "application/json",
+                    schema = @Schema(implementation = InsertUserOutput.class)) })
     @RequestMapping(value = "/api/v1/users", method = RequestMethod.POST)
     @ResponseBody
     public Response insertUser(
