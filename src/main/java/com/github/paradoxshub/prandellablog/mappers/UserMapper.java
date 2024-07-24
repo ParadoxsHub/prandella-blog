@@ -17,4 +17,6 @@ public interface UserMapper {
     Long deleteUserById(@Param("id") Long id);
 
     List<User> selectUsers(@Param("limit") int limit, @Param("offset") int offset);
+
+    Long selectUsersTotal();
 }

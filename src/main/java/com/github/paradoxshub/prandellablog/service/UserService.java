@@ -18,5 +18,5 @@ public interface UserService {
 
     SelectUserOutput selectUserById(Long id);
 
-    List<SelectUserListOutput> selectUser(int limit, int offset);
+    SelectUserListOutput selectUser(int limit, int offset);
 }

@@ -48,54 +48,30 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    public  List<SelectUserListOutput> selectUser(int limit, int offset) {
+    public SelectUserListOutput selectUser(int limit, int offset) {
 
         List<User> users = userMapper.selectUsers(limit, offset);
 
-        List<SelectUserListOutput> outputs = new ArrayList<>();
+        List<SelectUserOutput> list = new ArrayList<>();
         for (User user : users) {
-            SelectUserListOutput output = new SelectUserListOutput();
-            output.setId(user.getId());
-            output.setUsername(user.getUsername());
-            output.setNickname(user.getNickname());
-            output.setEmail(user.getEmail());
-            output.setGender(user.getGender());
-            output.setAge(user.getAge());
-            output.setCreated_at(user.getCreated_at());
-            output.setUpdated_at(user.getUpdated_at());
-            output.setDeleted_at(user.getDeleted_at());
-            output.setAdmin(user.isAdmin());
-            output.setBan(user.isBan());
-            output.setAvatar(user.getAvatar());
-            outputs.add(output);
+            list.add(SelectUserOutput.of(user));
         }
 
-        return outputs;
+        Long total = userMapper.selectUsersTotal();
+
+        return new SelectUserListOutput(total, list);
     }
+
 
     @Override
     public SelectUserOutput selectUserById(Long id) {
-
-        User user = userMapper.selectUserById(id);
-        SelectUserOutput output = new SelectUserOutput();
-        output.setId(user.getId());
-        output.setUsername(user.getUsername());
-        output.setNickname(user.getNickname());
-        output.setEmail(user.getEmail());
-        output.setGender(user.getGender());
-        output.setAge(user.getAge());
-        output.setCreated_at(user.getCreated_at());
-        output.setUpdated_at(user.getUpdated_at());
-        output.setDeleted_at(user.getDeleted_at());
-        output.setAdmin(user.isAdmin());
-        output.setBan(user.isBan());
-        output.setAvatar(user.getAvatar());
-
-        return output;
+        return SelectUserOutput.of(userMapper.selectUserById(id));
     }
 
     @Override
     public Long deleteUserById(Long id) {
         return userMapper.deleteUserById(id);
     }
+
+
 }

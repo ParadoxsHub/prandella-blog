@@ -1,6 +1,7 @@
 package com.github.paradoxshub.prandellablog.output;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.paradoxshub.prandellablog.entity.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -153,5 +154,40 @@ public class SelectUserOutput {
 
     public void setDeleted_at(Timestamp deleted_at) {
         this.deleted_at = deleted_at;
+    }
+
+    public void fromUser(User user) {
+        this.setId(user.getId());
+        this.setUsername(user.getUsername());
+        this.setNickname(user.getNickname());
+        this.setEmail(user.getEmail());
+        this.setGender(user.getGender());
+        this.setAge(user.getAge());
+        this.setCreated_at(user.getCreated_at());
+        this.setUpdated_at(user.getUpdated_at());
+        this.setDeleted_at(user.getDeleted_at());
+        this.setAdmin(user.isAdmin());
+        this.setBan(user.isBan());
+        this.setAvatar(user.getAvatar());
+    }
+
+    public static SelectUserOutput of(User user) {
+        SelectUserOutput output = new SelectUserOutput();
+        if(user == null) {
+            return output;
+        }
+        output.setId(user.getId());
+        output.setUsername(user.getUsername());
+        output.setNickname(user.getNickname());
+        output.setEmail(user.getEmail());
+        output.setGender(user.getGender());
+        output.setAge(user.getAge());
+        output.setCreated_at(user.getCreated_at());
+        output.setUpdated_at(user.getUpdated_at());
+        output.setDeleted_at(user.getDeleted_at());
+        output.setAdmin(user.isAdmin());
+        output.setBan(user.isBan());
+        output.setAvatar(user.getAvatar());
+        return output;
     }
 }
