@@ -8,4 +8,6 @@ import org.springframework.stereotype.Service;
 public interface UserService {
 
     InsertUserOutput insertUser(InsertUserInput input);
+
+    Long deleteUser(Long id);
 }

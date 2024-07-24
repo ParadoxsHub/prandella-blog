@@ -17,6 +17,10 @@
                 #{updated_by});
     </insert>
 
+    <delete id="deleteUserById" parameterType="java.lang.Long">
+        delete from "user" where id = #{id};
+    </delete>
+
 <!--    <select id="searchUserById" resultType="com.github.paradoxshub.prandellablog.entity.User">-->
 <!--        select * from user where id = #{id}-->
 <!--    </select>-->

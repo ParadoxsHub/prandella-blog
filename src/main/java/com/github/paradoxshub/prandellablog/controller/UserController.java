@@ -1,7 +1,5 @@
 package com.github.paradoxshub.prandellablog.controller;
 
-import com.github.paradoxshub.prandellablog.common.ErrorCode;
-import com.github.paradoxshub.prandellablog.common.ErrorMessage;
 import com.github.paradoxshub.prandellablog.input.InsertUserInput;
 import com.github.paradoxshub.prandellablog.output.BaseResponse;
 import com.github.paradoxshub.prandellablog.output.InsertUserOutput;
@@ -25,8 +23,8 @@ public class UserController {
     }
 
     @ApiResponse(responseCode = "200", description = "insert a user success",
-            content = { @Content(mediaType = "application/json",
-                    schema = @Schema(implementation = InsertUserOutput.class)) })
+            content = {@Content(mediaType = "application/json",
+                    schema = @Schema(implementation = InsertUserOutput.class))})
     @RequestMapping(value = "/api/v1/users", method = RequestMethod.POST)
     @ResponseBody
     public Response insertUser(
@@ -34,6 +32,16 @@ public class UserController {
     ) {
         InsertUserOutput output = userService.insertUser(input);
         return BaseResponse.ok(output);
+    }
+
+    @ApiResponse(responseCode = "200", description = "delete a user success",
+            content = {@Content(mediaType = "application/json")})
+    @RequestMapping(value = "/api/v1/users/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public Response deleteUser(
+            @PathVariable Long id
+    ) {
+        return BaseResponse.ok(userService.deleteUser(id));
     }
 
 

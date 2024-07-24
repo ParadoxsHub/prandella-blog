@@ -38,4 +38,9 @@ public class UserServiceImpl implements UserService {
         System.out.println(count);
         return new InsertUserOutput(user.getId());
     }
+
+    @Override
+    public Long deleteUser(Long id) {
+        return userMapper.deleteUserById(id);
+    }
 }
