@@ -26,59 +26,14 @@
     <delete id="deleteUserById" parameterType="java.lang.Long">
         delete from "user" where id = #{id};
     </delete>
-    
+
     <select id="selectUserById" resultType="com.github.paradoxshub.prandellablog.entity.User">
         select * from "user" where id = #{id};
     </select>
 
- <!--   <select id="searchUserByUsername" resultType="com.github.paradoxshub.prandellablog.entity.User">
-        select * from user where username = #{username};
+    <select id="selectUsers" resultType="com.github.paradoxshub.prandellablog.entity.User">
+        select * from "user" limit #{limit} offset #{offset}
     </select>
-
-    <select id="searchUserByEmail" resultType="com.github.paradoxshub.prandellablog.entity.User">
-        select * from user where email = #{email};
-    </select>
-
-    <select id="searchUserByPhone" resultType="com.github.paradoxshub.prandellablog.entity.User">
-        select * from user where phone = #{phone};
-    </select>-->
-<!--    <select id="searchUserById" resultType="com.github.paradoxshub.prandellablog.entity.User">-->
-<!--        select * from user where id = #{id}-->
-<!--    </select>-->
-
-<!--    <select id="searchUserByUsername" resultType="com.github.paradoxshub.prandellablog.entity.User">-->
-<!--        select * from user where username = #{username}-->
-<!--    </select>-->
-
-<!--    <select id="searchUserByEmail" resultType="com.github.paradoxshub.prandellablog.entity.User">-->
-<!--        select * from user where email = #{email}-->
-<!--    </select>-->
-
-<!--    <select id="searchUserByPhoneNumber" resultType="com.github.paradoxshub.prandellablog.entity.User">-->
-<!--        select * from user where phoneNumber = #{phoneNumber}-->
-<!--    </select>-->
-
-<!--    <update id="updateUser" parameterType="com.github.paradoxshub.prandellablog.entity.User">-->
-<!--        update user set username=#{username},password=#{password},email=#{email},phoneNumber=#{phoneNumber} where id=#{id}-->
-<!--    </update>-->
-
-<!--    <delete id="deleteUserByIdAndPassword" parameterType="int">-->
-<!--        delete from user where id=#{id} and password=#{password}-->
-<!--    </delete>-->
-
-
-<!--    <delete id="deleteUserByUsernameAndPassword" parameterType="com.github.paradoxshub.prandellablog.entity.User">-->
-<!--        delete * from user where username = #{username} and password = #{password}-->
-<!--    </delete>-->
-
-<!--    <delete id="deleteUserByEmailAndPassword" parameterType="com.github.paradoxshub.prandellablog.entity.User">-->
-<!--        delete * from user where email = #{email} and password = #{password}-->
-<!--    </delete>-->
-
-
-<!--    <delete id="deleteUserByPhoneNumberAndPassword" parameterType="com.github.paradoxshub.prandellablog.entity.User">-->
-<!--        delete * from user where phoneNumber = #{phoneNumber} and password = #{password}-->
-<!--    </delete>-->
 
 
 </mapper>

@@ -9,7 +9,10 @@ import com.github.paradoxshub.prandellablog.service.UserService;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.springdoc.core.converters.models.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,6 +49,18 @@ public class UserController {
         return BaseResponse.ok(userService.selectUserById(id));
     }
 
+    @ApiResponse(responseCode = "200", description = "select user list success",
+            content = {@Content(mediaType = "application/json")})
+    @RequestMapping(value = "/api/v1/users", method = RequestMethod.GET)
+    @ResponseBody
+    public Response selectUser(
+            @RequestParam int limit,
+            @RequestParam int offset
+    ) {
+        return BaseResponse.ok(userService.selectUser(limit, offset));
+    }
+
+
     @ApiResponse(responseCode = "200", description = "delete a user success",
             content = {@Content(mediaType = "application/json")})
     @RequestMapping(value = "/api/v1/users/{id}", method = RequestMethod.DELETE)
@@ -53,7 +68,7 @@ public class UserController {
     public Response deleteUser(
             @PathVariable Long id
     ) {
-        return BaseResponse.ok(userService.deleteUser(id));
+        return BaseResponse.ok(userService.deleteUserById(id));
     }
 
 

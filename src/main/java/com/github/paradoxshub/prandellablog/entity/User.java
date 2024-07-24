@@ -142,19 +142,19 @@ public class User {
         this.avatar = avatar;
     }
 
-    public Timestamp getDeleted_at() {
-        return deleted_at;
-    }
-
-    public void setDeleted_at(Timestamp deleted_at) {
-        this.deleted_at = deleted_at;
-    }
-
     public Long getDeleted_by() {
         return deleted_by;
     }
 
     public void setDeleted_by(Long deleted_by) {
         this.deleted_by = deleted_by;
+    }
+
+    public Timestamp getDeleted_at() {
+        return deleted_at;
+    }
+
+    public void setDeleted_at(Timestamp deleted_at) {
+        this.deleted_at = deleted_at;
     }
 }
