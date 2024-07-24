@@ -43,8 +43,7 @@ public class UserController {
     public Response selectUserById(
             @PathVariable Long id
     ) {
-        SelectUserOutput output = userService.selectUserById(id);
-        return BaseResponse.ok(output);
+        return BaseResponse.ok(userService.selectUserById(id));
     }
 
     @ApiResponse(responseCode = "200", description = "delete a user success",

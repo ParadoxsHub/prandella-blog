@@ -18,6 +18,7 @@ public class SelectUserOutput {
     private Long updated_by;
     private Timestamp created_at;
     private Timestamp updated_at;
+    private Timestamp deleted_at;
     private int gender;
     private int age;
     private boolean admin;
@@ -144,5 +145,13 @@ public class SelectUserOutput {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public Timestamp getDeleted_at() {
+        return deleted_at;
+    }
+
+    public void setDeleted_at(Timestamp deleted_at) {
+        this.deleted_at = deleted_at;
     }
 }

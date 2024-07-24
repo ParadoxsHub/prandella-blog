@@ -45,7 +45,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public SelectUserOutput selectUserById(Long id) {
-        return userMapper.selectUserById(id);
+
+        User user = userMapper.selectUserById(id);
+        SelectUserOutput output = new SelectUserOutput();
+        output.setId(user.getId());
+        output.setUsername(user.getUsername());
+        output.setNickname(user.getNickname());
+        output.setEmail(user.getEmail());
+        output.setGender(user.getGender());
+        output.setAge(user.getAge());
+        output.setCreated_at(user.getCreated_at());
+        output.setUpdated_at(user.getUpdated_at());
+        output.setDeleted_at(user.getDeleted_at());
+        output.setAdmin(user.isAdmin());
+        output.setBan(user.isBan());
+        output.setAvatar(user.getAvatar());
+
+        return output;
     }
 
     @Override

@@ -10,8 +10,10 @@ public class User {
     private String email;
     private Long created_by;
     private Long updated_by;
+    private Long deleted_by;
     private Timestamp created_at;
     private Timestamp updated_at;
+    private Timestamp deleted_at;
     private int gender;
     private int age;
     private boolean admin;
@@ -138,5 +140,21 @@ public class User {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public Timestamp getDeleted_at() {
+        return deleted_at;
+    }
+
+    public void setDeleted_at(Timestamp deleted_at) {
+        this.deleted_at = deleted_at;
+    }
+
+    public Long getDeleted_by() {
+        return deleted_by;
+    }
+
+    public void setDeleted_by(Long deleted_by) {
+        this.deleted_by = deleted_by;
     }
 }
