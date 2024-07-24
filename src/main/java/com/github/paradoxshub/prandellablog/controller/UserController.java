@@ -1,11 +1,11 @@
 package com.github.paradoxshub.prandellablog.controller;
 
-import com.github.paradoxshub.prandellablog.common.ErrorCode;
-import com.github.paradoxshub.prandellablog.common.ErrorMessage;
 import com.github.paradoxshub.prandellablog.input.InsertUserInput;
+import com.github.paradoxshub.prandellablog.input.UpdateUserInput;
 import com.github.paradoxshub.prandellablog.output.BaseResponse;
 import com.github.paradoxshub.prandellablog.output.InsertUserOutput;
 import com.github.paradoxshub.prandellablog.output.Response;
+import com.github.paradoxshub.prandellablog.output.UpdateUserOutput;
 import com.github.paradoxshub.prandellablog.service.UserService;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -36,5 +36,12 @@ public class UserController {
         return BaseResponse.ok(output);
     }
 
+    @RequestMapping(value = "/api/v1/users/update", method = RequestMethod.POST)
+    @ResponseBody
+    public  Response updateUser(
+            @RequestBody @Validated UpdateUserInput input){
+        UpdateUserOutput output = userService.updateUser(input);
+        return BaseResponse.ok(output);
+    }
 
 }
