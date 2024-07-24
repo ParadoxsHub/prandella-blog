@@ -4,6 +4,7 @@ import com.github.paradoxshub.prandellablog.input.InsertUserInput;
 import com.github.paradoxshub.prandellablog.output.InsertUserOutput;
 import com.github.paradoxshub.prandellablog.entity.User;
 import com.github.paradoxshub.prandellablog.mappers.UserMapper;
+import com.github.paradoxshub.prandellablog.output.SelectUserOutput;
 import com.github.paradoxshub.prandellablog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserMapper userMapper) {
         this.userMapper = userMapper;
     }
+
 
     public InsertUserOutput insertUser(InsertUserInput input) {
         // 这里写业务逻辑
@@ -39,6 +41,11 @@ public class UserServiceImpl implements UserService {
         Long count = userMapper.insertUser(user);
         System.out.println(count);
         return new InsertUserOutput(user.getId());
+    }
+
+    @Override
+    public SelectUserOutput selectUserById(Long id) {
+        return userMapper.selectUserById(id);
     }
 
     @Override

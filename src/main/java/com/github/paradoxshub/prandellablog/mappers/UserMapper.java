@@ -1,6 +1,7 @@
 package com.github.paradoxshub.prandellablog.mappers;
 
 import com.github.paradoxshub.prandellablog.entity.User;
+import com.github.paradoxshub.prandellablog.output.SelectUserOutput;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,6 +12,7 @@ public interface UserMapper {
 
     //添加新用户
     Long insertUser(User user);
+    SelectUserOutput selectUserById(@Param("id") Long id);
 
     Long deleteUserById(@Param("id") Long id);
 
