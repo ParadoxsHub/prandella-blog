@@ -11,7 +11,7 @@ public class InsertUserInput {
     @JsonProperty(value = "username")
     @NotBlank(message = "username is required")
     @Pattern(regexp = "[a-zA-Z0-9]+")
-    @Size(min =  6, max = 64)
+    @Size(min =  6, max = 16)
     private String username;
 
     @JsonProperty(value = "password")
@@ -26,6 +26,7 @@ public class InsertUserInput {
     @JsonProperty(value = "nickname")
     @NotBlank(message = "nickname is required")
     @Pattern(regexp = "[a-zA-Z0-9]+")
+    @Size(min =  6, max = 16)
     private String nickname;
 
     @JsonProperty(value = "gender")

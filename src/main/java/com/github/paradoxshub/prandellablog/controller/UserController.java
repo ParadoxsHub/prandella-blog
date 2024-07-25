@@ -1,18 +1,12 @@
 package com.github.paradoxshub.prandellablog.controller;
 
 import com.github.paradoxshub.prandellablog.input.InsertUserInput;
-import com.github.paradoxshub.prandellablog.output.BaseResponse;
-import com.github.paradoxshub.prandellablog.output.InsertUserOutput;
-import com.github.paradoxshub.prandellablog.output.Response;
-import com.github.paradoxshub.prandellablog.output.SelectUserOutput;
+import com.github.paradoxshub.prandellablog.output.*;
 import com.github.paradoxshub.prandellablog.service.UserService;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import org.springdoc.core.converters.models.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,7 +44,8 @@ public class UserController {
     }
 
     @ApiResponse(responseCode = "200", description = "select user list success",
-            content = {@Content(mediaType = "application/json")})
+            content = {@Content(mediaType = "application/json",
+                    schema = @Schema(implementation = SelectUserListOutput.class))})
     @RequestMapping(value = "/api/v1/users", method = RequestMethod.GET)
     @ResponseBody
     public Response selectUser(
