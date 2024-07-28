@@ -9,7 +9,7 @@ import jakarta.validation.constraints.Size;
 
 import java.sql.Timestamp;
 
-public class SelectUserOutput {
+public class  SelectUserOutput {
     private Long id;
     private String username;
     private String nickname;

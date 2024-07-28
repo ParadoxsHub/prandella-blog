@@ -8,7 +8,6 @@ import com.github.paradoxshub.prandellablog.output.SelectUserListOutput;
 import com.github.paradoxshub.prandellablog.output.SelectUserOutput;
 import com.github.paradoxshub.prandellablog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,7 +24,6 @@ public class UserServiceImpl implements UserService {
     public UserServiceImpl(UserMapper userMapper) {
         this.userMapper = userMapper;
     }
-
 
     public InsertUserOutput insertUser(InsertUserInput input) {
         // 这里写业务逻辑
@@ -57,7 +55,7 @@ public class UserServiceImpl implements UserService {
             list.add(SelectUserOutput.of(user));
         }
 
-        Long total = userMapper.selectUsersTotal();
+        Long total = (long) list.size();
 
         return new SelectUserListOutput(total, list);
     }
@@ -66,6 +64,34 @@ public class UserServiceImpl implements UserService {
     @Override
     public SelectUserOutput selectUserById(Long id) {
         return SelectUserOutput.of(userMapper.selectUserById(id));
+    }
+
+    @Override
+    public SelectUserListOutput selectUserByEmail(String email) {
+        List<User> users = userMapper.selectUserByEmail(email);
+
+        List<SelectUserOutput> list = new ArrayList<>();
+        for (User user : users) {
+            list.add(SelectUserOutput.of(user));
+        }
+
+        Long total = (long) list.size();
+
+        return new SelectUserListOutput(total, list);
+    }
+
+    @Override
+    public SelectUserListOutput selectUserByUserName(String username) {
+        List<User> users = userMapper.selectUserByUserName(username);
+
+        List<SelectUserOutput> list = new ArrayList<>();
+        for (User user : users) {
+            list.add(SelectUserOutput.of(user));
+        }
+
+        Long total = (long) list.size();
+
+        return new SelectUserListOutput(total, list);
     }
 
     @Override

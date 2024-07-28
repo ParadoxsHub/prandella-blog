@@ -14,6 +14,10 @@ public interface UserMapper {
     Long insertUser(User user);
     User selectUserById(@Param("id") Long id);
 
+    List<User> selectUserByUserName(@Param("username") String username);
+
+    List<User> selectUserByEmail(@Param("email") String email);
+
     Long deleteUserById(@Param("id") Long id);
 
     List<User> selectUsers(@Param("limit") int limit, @Param("offset") int offset);

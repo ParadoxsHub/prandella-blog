@@ -3,11 +3,8 @@ package com.github.paradoxshub.prandellablog.service;
 import com.github.paradoxshub.prandellablog.input.InsertUserInput;
 import com.github.paradoxshub.prandellablog.output.InsertUserOutput;
 import com.github.paradoxshub.prandellablog.output.SelectUserListOutput;
-import org.springframework.data.domain.Sort;
 import com.github.paradoxshub.prandellablog.output.SelectUserOutput;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public interface UserService {
@@ -17,6 +14,8 @@ public interface UserService {
     Long deleteUserById(Long id);
 
     SelectUserOutput selectUserById(Long id);
+    SelectUserListOutput selectUserByEmail(String email);
+    SelectUserListOutput selectUserByUserName(String username);
 
     SelectUserListOutput selectUser(int limit, int offset);
 }

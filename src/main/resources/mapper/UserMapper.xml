@@ -31,6 +31,14 @@
         select * from "user" where id = #{id};
     </select>
 
+    <select id="selectUserByUserName" resultType="com.github.paradoxshub.prandellablog.entity.User">
+        select * from "user" where username = #{username};
+    </select>
+
+    <select id="selectUserByEmail" resultType="com.github.paradoxshub.prandellablog.entity.User">
+        select * from "user" where email = #{email};
+    </select>
+
     <select id="selectUsersTotal" resultType="java.lang.Long">
         select count(*) from "user";
     </select>

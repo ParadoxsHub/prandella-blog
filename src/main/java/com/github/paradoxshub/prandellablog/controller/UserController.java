@@ -1,12 +1,19 @@
 package com.github.paradoxshub.prandellablog.controller;
 
 import com.github.paradoxshub.prandellablog.input.InsertUserInput;
-import com.github.paradoxshub.prandellablog.output.*;
+import com.github.paradoxshub.prandellablog.output.BaseResponse;
+import com.github.paradoxshub.prandellablog.output.InsertUserOutput;
+import com.github.paradoxshub.prandellablog.output.Response;
+import com.github.paradoxshub.prandellablog.output.SelectUserOutput;
 import com.github.paradoxshub.prandellablog.service.UserService;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.apache.commons.lang3.StringUtils;
+import org.springdoc.core.converters.models.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,15 +51,24 @@ public class UserController {
     }
 
     @ApiResponse(responseCode = "200", description = "select user list success",
-            content = {@Content(mediaType = "application/json",
-                    schema = @Schema(implementation = SelectUserListOutput.class))})
+            content = {@Content(mediaType = "application/json")})
     @RequestMapping(value = "/api/v1/users", method = RequestMethod.GET)
     @ResponseBody
     public Response selectUser(
             @RequestParam int limit,
-            @RequestParam int offset
+            @RequestParam int offset,
+            @RequestParam(required = false) String username,
+            @RequestParam(required = false) String email
     ) {
-        return BaseResponse.ok(userService.selectUser(limit, offset));
+        Object output = null;
+        if (StringUtils.isNoneEmpty(username)){
+            output = userService.selectUserByUserName(username);
+        } else if (StringUtils.isNoneEmpty(email)) {
+            output = userService.selectUserByEmail(email);
+        }else {
+            output = userService.selectUser(limit, offset);
+        }
+        return BaseResponse.ok(output);
     }
 
 
