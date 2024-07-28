@@ -1,10 +1,8 @@
 package com.github.paradoxshub.prandellablog.controller;
 
 import com.github.paradoxshub.prandellablog.input.InsertUserInput;
-import com.github.paradoxshub.prandellablog.output.BaseResponse;
-import com.github.paradoxshub.prandellablog.output.InsertUserOutput;
-import com.github.paradoxshub.prandellablog.output.Response;
-import com.github.paradoxshub.prandellablog.output.SelectUserOutput;
+import com.github.paradoxshub.prandellablog.input.UpdateUserInput;
+import com.github.paradoxshub.prandellablog.output.*;
 import com.github.paradoxshub.prandellablog.service.UserService;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -36,6 +34,18 @@ public class UserController {
             @RequestBody @Validated InsertUserInput input
     ) {
         InsertUserOutput output = userService.insertUser(input);
+        return BaseResponse.ok(output);
+    }
+
+    @ApiResponse(responseCode = "200", description = "update a user success",
+            content = {@Content(mediaType = "application/json",
+                    schema = @Schema(implementation = InsertUserOutput.class))})
+    @RequestMapping(value = "/api/v1/users", method = RequestMethod.PUT)
+    @ResponseBody
+    public Response updateUser(
+            @RequestBody @Validated UpdateUserInput input
+    ) {
+        UpdateUserOutput output = userService.updateUser(input);
         return BaseResponse.ok(output);
     }
 

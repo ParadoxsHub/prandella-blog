@@ -12,13 +12,16 @@ public interface UserMapper {
 
     //添加新用户
     Long insertUser(User user);
+
+    User updateUser(Long id);
+
+    Long deleteUserById(@Param("id") Long id);
+
     User selectUserById(@Param("id") Long id);
 
     List<User> selectUserByUserName(@Param("username") String username);
 
     List<User> selectUserByEmail(@Param("email") String email);
-
-    Long deleteUserById(@Param("id") Long id);
 
     List<User> selectUsers(@Param("limit") int limit, @Param("offset") int offset);
 
