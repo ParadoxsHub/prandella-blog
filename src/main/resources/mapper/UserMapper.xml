@@ -23,9 +23,10 @@
                 );
     </insert>
 
-    <update id="updateUser" parameterType="java.lang.Long">
+    <update id="updateUser" parameterType="com.github.paradoxshub.prandellablog.entity.User">
         update "user"
-        set username = #{username},
+        set
+            username = #{username},
             password = #{password},
             email = #{email},
             nickname = #{nickname},

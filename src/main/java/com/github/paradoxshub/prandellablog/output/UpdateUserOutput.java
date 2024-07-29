@@ -173,6 +173,7 @@ public class UpdateUserOutput {
         output.setId(user.getId());
         output.setUsername(user.getUsername());
         output.setNickname(user.getNickname());
+        output.setPassword(user.getPassword());
         output.setEmail(user.getEmail());
         output.setGender(user.getGender());
         output.setAge(user.getAge());

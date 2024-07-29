@@ -39,7 +39,7 @@ public class UserController {
 
     @ApiResponse(responseCode = "200", description = "update a user success",
             content = {@Content(mediaType = "application/json",
-                    schema = @Schema(implementation = InsertUserOutput.class))})
+                    schema = @Schema(implementation = UpdateUserOutput.class))})
     @RequestMapping(value = "/api/v1/users", method = RequestMethod.PUT)
     @ResponseBody
     public Response updateUser(

@@ -57,13 +57,10 @@ public class UserServiceImpl implements UserService {
         user.setEmail(input.getEmail());
         user.setNickname(input.getNickname());
         user.setGender(input.getGender());
-        user.setCreated_by(0L);
-        user.setUpdated_by(0L);
         user.setAge(input.getAge());
-        user.setAdmin(input.admin());
-        user.setBan(false);
-
-        return UpdateUserOutput.of(userMapper.updateUser(user.getId()));
+        user.setAdmin(input.isAdmin());
+        userMapper.updateUser(user);
+        return UpdateUserOutput.of(user);
     }
 
     @Override

@@ -10,13 +10,16 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    //添加新用户
+    // 添加新用户
     Long insertUser(User user);
 
-    User updateUser(@Param("id") Long id);
+    // 修改用户信息
+    Long updateUser(User user);
 
+    // 通过id删除用户
     Long deleteUserById(@Param("id") Long id);
 
+    //通过id查询用户
     User selectUserById(@Param("id") Long id);
 
     List<User> selectUserByUserName(@Param("username") String username);

@@ -7,17 +7,6 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public class UpdateUserInput {
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public boolean isAdmin() {
-        return admin;
-    }
 
     @JsonProperty(value = "id")
     private Long id;
@@ -52,7 +41,7 @@ public class UpdateUserInput {
     @JsonProperty(value = "admin")
     private boolean admin;
 
-    public UpdateUserInput(Long id,String username, String password, String email, String nickname,int gender,int age) {
+    public UpdateUserInput(Long id, String username, String password, String email, String nickname, int gender, int age, boolean admin) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -60,6 +49,18 @@ public class UpdateUserInput {
         this.nickname = nickname;
         this.gender = gender;
         this.age = age;
+        this.admin = admin;
+    }
+
+    public UpdateUserInput() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -86,9 +87,13 @@ public class UpdateUserInput {
         this.email = email;
     }
 
-    public String getNickname() {return nickname;}
+    public String getNickname() {
+        return nickname;
+    }
 
-    public void setNickname(String nickname) {this.nickname = nickname;}
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 
     public int getGender() {
         return gender;
@@ -106,7 +111,7 @@ public class UpdateUserInput {
         this.age = age;
     }
 
-    public boolean admin() {
+    public boolean isAdmin() {
         return admin;
     }
 
