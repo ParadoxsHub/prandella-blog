@@ -124,6 +124,7 @@ public class UserServiceImpl implements UserService {
         User user = optionalUser.get();
         boolean current_banstatus=user.isBan();
 //        user.setBan(!current_banstatus);
+
         userMapper.updateUserIsBanById(userId, !current_banstatus);
         return userId;
     }
