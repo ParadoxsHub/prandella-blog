@@ -92,5 +92,19 @@ public class UserController {
         return BaseResponse.ok(userService.deleteUserById(id));
     }
 
+    @ApiResponse(responseCode = "200",description = "ban a user success",
+            content={@Content(mediaType = "application/json")})
+    @RequestMapping(value = "/api/v1/user/{userId}/ban",method = RequestMethod.PATCH)
+    @ResponseBody
+    public Response banUser(
+            @PathVariable Long userId
+    ){
+        Long success=userService.banUser(userId);
+        if (success!=null&&success>0) {
+            return BaseResponse.ok(userId);
+        } else {
+            return BaseResponse.error("Failed to ban user with ID "+userId+".");
+        }
+    }
 
 }

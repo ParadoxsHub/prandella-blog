@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface UserService {
+    Long banUser(Long userId);
 
     InsertUserOutput insertUser(InsertUserInput input);
 

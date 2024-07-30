@@ -16,8 +16,8 @@ public class User {
     private Timestamp deleted_at;
     private int gender;
     private int age;
-    private boolean admin;
-    private boolean ban;
+    private boolean is_admin;
+    private boolean is_ban;
     private String avatar;
 
     public User() {
@@ -119,19 +119,19 @@ public class User {
     public void setAge(int age) {this.age = age;}
 
     public boolean isAdmin() {
-        return admin;
+        return is_admin;
     }
 
     public void setAdmin(boolean admin) {
-        this.admin = admin;
+        this.is_admin = admin;
     }
 
     public boolean isBan() {
-        return ban;
+        return is_ban;
     }
 
     public void setBan(boolean ban) {
-        this.ban = ban;
+        this.is_ban = ban;
     }
 
     public String getAvatar() {

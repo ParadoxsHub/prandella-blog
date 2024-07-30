@@ -14,11 +14,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
 public class UserServiceImpl implements UserService {
-
     //注入mapper
     private final UserMapper userMapper;
 
@@ -115,5 +115,16 @@ public class UserServiceImpl implements UserService {
 
         return new SelectUserListOutput(total, list);
     }
-
+//    禁止用户
+    public Long banUser(Long userId) {
+        Optional<User> optionalUser = Optional.ofNullable(userMapper.selectUserById(userId));
+        if (!optionalUser.isPresent()) {
+            throw new IllegalArgumentException("User " + userId + " not found");
+        }
+        User user = optionalUser.get();
+        boolean current_banstatus=user.isBan();
+//        user.setBan(!current_banstatus);
+        userMapper.updateUserIsBanById(userId, !current_banstatus);
+        return userId;
+    }
 }

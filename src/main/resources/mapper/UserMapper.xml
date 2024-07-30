@@ -59,5 +59,12 @@
         select * from "user" limit #{limit} offset #{offset};
     </select>
 
+    <update id="updateUserIsBanById" >
+        update "user"
+        set
+            is_ban = #{ban}
+        where id = #{id};
+    </update>
+
 
 </mapper>

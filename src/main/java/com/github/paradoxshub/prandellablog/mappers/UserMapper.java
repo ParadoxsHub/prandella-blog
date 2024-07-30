@@ -29,4 +29,7 @@ public interface UserMapper {
     List<User> selectUsers(@Param("limit") int limit, @Param("offset") int offset);
 
     Long selectUsersTotal();
+
+    //禁止用户
+    Long updateUserIsBanById(@Param("id") Long id,@Param("ban") Boolean ban);
 }
