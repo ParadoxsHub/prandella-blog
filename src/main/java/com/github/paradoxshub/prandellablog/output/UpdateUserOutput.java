@@ -1,8 +1,11 @@
-package com.github.paradoxshub.prandellablog.entity;
+package com.github.paradoxshub.prandellablog.output;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.paradoxshub.prandellablog.entity.User;
 
 import java.sql.Timestamp;
 
-public class User {
+public class UpdateUserOutput {
     private Long id;
     private String username;
     private String nickname;
@@ -10,28 +13,25 @@ public class User {
     private String email;
     private Long created_by;
     private Long updated_by;
-    private Long deleted_by;
     private Timestamp created_at;
     private Timestamp updated_at;
     private Timestamp deleted_at;
     private int gender;
     private int age;
-    private boolean is_admin;
-    private boolean is_ban;
+    private boolean admin;
+    private boolean ban;
     private String avatar;
 
-    public User() {
+    public UpdateUserOutput() {
     }
 
 
-    public User(Long id, String username, String password, String email, String nickname,int gender,int age){
-        this.username = username;
-        this.id = id;
-        this.password = password;
-        this.email = email;
-        this.nickname = nickname;
-        this.gender = gender;
-        this.age = age;
+    public UpdateUserOutput(User user){
+        this.id = user.getId();
+        this.username = user.getUsername();
+        this.age = user.getAge();
+        this.email = user.getEmail();
+        this.avatar = user.getAvatar();
     }
 
     public String getUsername() {
@@ -119,19 +119,19 @@ public class User {
     public void setAge(int age) {this.age = age;}
 
     public boolean isAdmin() {
-        return is_admin;
+        return admin;
     }
 
     public void setAdmin(boolean admin) {
-        this.is_admin = admin;
+        this.admin = admin;
     }
 
     public boolean isBan() {
-        return is_ban;
+        return ban;
     }
 
     public void setBan(boolean ban) {
-        this.is_ban = ban;
+        this.ban = ban;
     }
 
     public String getAvatar() {
@@ -142,19 +142,47 @@ public class User {
         this.avatar = avatar;
     }
 
-    public Long getDeleted_by() {
-        return deleted_by;
-    }
-
-    public void setDeleted_by(Long deleted_by) {
-        this.deleted_by = deleted_by;
-    }
-
     public Timestamp getDeleted_at() {
         return deleted_at;
     }
 
     public void setDeleted_at(Timestamp deleted_at) {
         this.deleted_at = deleted_at;
+    }
+
+    public void fromUser(User user) {
+        this.setId(user.getId());
+        this.setUsername(user.getUsername());
+        this.setNickname(user.getNickname());
+        this.setEmail(user.getEmail());
+        this.setGender(user.getGender());
+        this.setAge(user.getAge());
+        this.setCreated_at(user.getCreated_at());
+        this.setUpdated_at(user.getUpdated_at());
+        this.setDeleted_at(user.getDeleted_at());
+        this.setAdmin(user.isAdmin());
+        this.setBan(user.isBan());
+        this.setAvatar(user.getAvatar());
+    }
+
+    public static UpdateUserOutput of(User user) {
+        UpdateUserOutput output = new UpdateUserOutput();
+        if(user == null) {
+            return output;
+        }
+        output.setId(user.getId());
+        output.setUsername(user.getUsername());
+        output.setNickname(user.getNickname());
+        output.setPassword(user.getPassword());
+        output.setEmail(user.getEmail());
+        output.setGender(user.getGender());
+        output.setAge(user.getAge());
+        output.setCreated_at(user.getCreated_at());
+        output.setUpdated_at(user.getUpdated_at());
+        output.setDeleted_at(user.getDeleted_at());
+        output.setAdmin(user.isAdmin());
+        output.setBan(user.isBan());
+        output.setAvatar(user.getAvatar());
+        return output;
     }
 }

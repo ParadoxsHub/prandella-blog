@@ -1,8 +1,6 @@
-package com.github.paradoxshub.prandellablog.Output;
+package com.github.paradoxshub.prandellablog.output;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.Objects;
 
 public class InsertUserOutput  {
 

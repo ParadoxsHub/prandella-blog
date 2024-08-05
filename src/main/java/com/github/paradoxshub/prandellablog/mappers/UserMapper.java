@@ -2,7 +2,6 @@ package com.github.paradoxshub.prandellablog.mappers;
 
 import com.github.paradoxshub.prandellablog.entity.User;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -11,28 +10,26 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    //添加新用户
+    // 添加新用户
     Long insertUser(User user);
 
+    // 修改用户信息
+    Long updateUser(User user);
 
-//    //修改用户信息
-//    List<User> updateUser();
-//
-//    //注销或封禁用户
-//    List<User> deleteUserByUsernameAndPassword();
-//
-//    List<User> deleteUserByEmailAndPassword();
-//
-//    List<User> deleteUserByIdAndPassword();
-//
-//    List<User> deleteUserByPhoneNumberAndPassword();
-//
-//    //查找用户
-//    List<User> searchUserById();
-//
-//    List<User> searchUserByEmail();
-//
-//    List<User> searchUserByUsername();
-//
-//    List<User> searchUserByPhoneNumber();
+    // 通过id删除用户
+    Long deleteUserById(@Param("id") Long id);
+
+    //通过id查询用户
+    User selectUserById(@Param("id") Long id);
+
+    List<User> selectUserByUserName(@Param("username") String username);
+
+    List<User> selectUserByEmail(@Param("email") String email);
+
+    List<User> selectUsers(@Param("limit") int limit, @Param("offset") int offset);
+
+    Long selectUsersTotal();
+
+    //禁止用户
+    Long updateUserIsBanById(@Param("id") Long id,@Param("ban") Boolean ban);
 }
