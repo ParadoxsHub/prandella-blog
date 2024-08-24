@@ -9,7 +9,7 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
-
+    // 对数据库进行操作
     // 添加新用户
     Long insertUser(User user);
 

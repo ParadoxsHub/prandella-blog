@@ -8,4 +8,7 @@ public class ErrorCode {
     final public static Long error = 1L;
 
     final public static Long usernameIsTooShort = 1000L;
+
+    final public static Long passwordIsDifferent = 1001L;
+
 }

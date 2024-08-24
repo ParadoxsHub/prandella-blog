@@ -2,13 +2,21 @@ package com.github.paradoxshub.prandellablog.output;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class InsertUserOutput  {
-    // output指的是BaseResponse中的data，BaseResponse.ok/error(output)，指传入的数据
+public class RegisterUserOutput {
+
     @JsonProperty(value = "id")
     private Long id;
 
 
-    public InsertUserOutput(Long id) {
+    public RegisterUserOutput(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
     }
 }

@@ -5,18 +5,24 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+import org.springframework.beans.factory.annotation.Value;
 
-public class InsertUserInput {
-    // Input指body请求体所放的内容
+public class RegisterUserInput {
+
     @JsonProperty(value = "username")
     @NotBlank(message = "username is required")
     @Pattern(regexp = "[a-zA-Z0-9]+")
     @Size(min =  6, max = 16)
     private String username;
 
-    @JsonProperty(value = "password")
-    @NotBlank(message = "password is required")
-    private String password;
+//    @Value("${aes.key}")
+    @JsonProperty(value = "firstPassword")
+    @NotBlank(message = "firstPassword is required")
+    private String firstPassword;
+
+    @JsonProperty(value = "secondPassword")
+    @NotBlank(message = "secondPassword is required")
+    private String secondPassword;
 
     @JsonProperty(value = "email")
     @NotBlank(message = "email is required")
@@ -29,22 +35,12 @@ public class InsertUserInput {
     @Size(min =  6, max = 16)
     private String nickname;
 
-    @JsonProperty(value = "gender")
-    private int gender;
-
-    @JsonProperty(value = "age")
-    private int age;
-
-    @JsonProperty(value = "admin")
-    private boolean admin;
-
-    public InsertUserInput(String username, String password, String email, String nickname,int gender,int age) {
+    public RegisterUserInput(String username, String firstPassword, String secondPassword, String email, String nickname) {
         this.username = username;
-        this.password = password;
+        this.firstPassword = firstPassword;
+        this.secondPassword = secondPassword;
         this.email = email;
         this.nickname = nickname;
-        this.gender = gender;
-        this.age = age;
     }
 
     public String getUsername() {
@@ -55,12 +51,20 @@ public class InsertUserInput {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getFirstPassword() {
+        return firstPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setFirstPassword(String firstPassword) {
+        this.firstPassword = firstPassword;
+    }
+
+    public String getSecondPassword() {
+        return secondPassword;
+    }
+
+    public void setSecondPassword(String secondPassword) {
+        this.secondPassword = secondPassword;
     }
 
     public String getEmail() {
@@ -75,27 +79,4 @@ public class InsertUserInput {
 
     public void setNickname(String nickname) {this.nickname = nickname;}
 
-    public int getGender() {
-        return gender;
-    }
-
-    public void setGender(int gender) {
-        this.gender = gender;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public boolean admin() {
-        return admin;
-    }
-
-    public void setAdmin(boolean admin) {
-       this.admin = admin;
-    }
 }

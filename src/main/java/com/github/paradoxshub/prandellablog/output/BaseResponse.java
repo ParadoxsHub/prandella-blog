@@ -8,7 +8,12 @@ import java.util.Objects;
 
 
 public class BaseResponse implements Response {
-
+    // BaseResponse
+    /* 分为三组，
+    code是返回结果代码
+    message表示成功与失败信息
+    data为在controller传入对象
+     */
     @JsonProperty(value = "code")
     Long code = 0L;
 
@@ -24,6 +29,10 @@ public class BaseResponse implements Response {
 
     public static BaseResponse error(Object data) {
         return new BaseResponse(ErrorCode.error, ErrorMessage.error, data);
+    }
+
+    public static BaseResponse error(Long code, String msg) {
+        return new BaseResponse(code, msg);
     }
 
     public BaseResponse(Long code, String message, Object data) {

@@ -1,24 +1,28 @@
 package com.github.paradoxshub.prandellablog.service.impl;
 
 import com.github.paradoxshub.prandellablog.input.InsertUserInput;
+import com.github.paradoxshub.prandellablog.input.RegisterUserInput;
 import com.github.paradoxshub.prandellablog.input.UpdateUserInput;
-import com.github.paradoxshub.prandellablog.output.InsertUserOutput;
+import com.github.paradoxshub.prandellablog.output.*;
 import com.github.paradoxshub.prandellablog.entity.User;
 import com.github.paradoxshub.prandellablog.mappers.UserMapper;
-import com.github.paradoxshub.prandellablog.output.SelectUserListOutput;
-import com.github.paradoxshub.prandellablog.output.SelectUserOutput;
-import com.github.paradoxshub.prandellablog.output.UpdateUserOutput;
 import com.github.paradoxshub.prandellablog.service.UserService;
+import com.github.paradoxshub.prandellablog.util.AesEncryptUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.Random;
 
 
 @Service
 public class UserServiceImpl implements UserService {
+    // service主写业务逻辑
+    // 如：将数据传入数据库并数据更改，实现output数据的筛选和数值展示
+
     //注入mapper
     private final UserMapper userMapper;
 
@@ -28,23 +32,39 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public RegisterUserOutput registerUser(RegisterUserInput input) throws Exception {
+        User user = new User();
+        user.setId(new Random().nextLong());
+        user.setUsername(input.getUsername());
+        user.setPassword(input.getFirstPassword());
+        user.setEmail(input.getEmail());
+        user.setNickname(input.getNickname());
+        user.setCreated_at(Timestamp.from(Instant.now()));
+        user.setUpdated_at(Timestamp.from(Instant.now()));
+        user.setCreated_by(1L);
+        user.setUpdated_by(1L);
+        userMapper.insertUser(user);
+        return new RegisterUserOutput(user.getId());
+    }
+
+    @Override
     public InsertUserOutput insertUser(InsertUserInput input) {
         // 这里写业务逻辑
-
         User user = new User();
+        user.setId(new Random().nextLong());
         user.setUsername(input.getUsername());
         user.setPassword(input.getPassword());
         user.setEmail(input.getEmail());
         user.setNickname(input.getNickname());
         user.setGender(input.getGender());
-        user.setCreated_by(0L);
-        user.setUpdated_by(0L);
+        user.setCreated_at(Timestamp.from(Instant.now()));
+        user.setUpdated_at(Timestamp.from(Instant.now()));
+        user.setCreated_by(1L);
+        user.setUpdated_by(1L);
         user.setAge(input.getAge());
         user.setAdmin(input.admin());
         user.setBan(false);
-
-        Long count = userMapper.insertUser(user);
-        System.out.println(count);
+        userMapper.insertUser(user);
         return new InsertUserOutput(user.getId());
     }
 
@@ -115,17 +135,5 @@ public class UserServiceImpl implements UserService {
 
         return new SelectUserListOutput(total, list);
     }
-//    禁止用户
-    public Long banUser(Long userId) {
-        Optional<User> optionalUser = Optional.ofNullable(userMapper.selectUserById(userId));
-        if (!optionalUser.isPresent()) {
-            throw new IllegalArgumentException("User " + userId + " not found");
-        }
-        User user = optionalUser.get();
-        boolean current_banstatus=user.isBan();
-//        user.setBan(!current_banstatus);
 
-        userMapper.updateUserIsBanById(userId, !current_banstatus);
-        return userId;
-    }
 }
