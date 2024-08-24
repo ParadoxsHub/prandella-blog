@@ -1,16 +1,14 @@
 package com.github.paradoxshub.prandellablog.service;
 
 import com.github.paradoxshub.prandellablog.input.InsertUserInput;
+import com.github.paradoxshub.prandellablog.input.RegisterUserInput;
 import com.github.paradoxshub.prandellablog.input.UpdateUserInput;
-import com.github.paradoxshub.prandellablog.output.InsertUserOutput;
-import com.github.paradoxshub.prandellablog.output.SelectUserListOutput;
-import com.github.paradoxshub.prandellablog.output.SelectUserOutput;
-import com.github.paradoxshub.prandellablog.output.UpdateUserOutput;
+import com.github.paradoxshub.prandellablog.output.*;
 import org.springframework.stereotype.Service;
 
 @Service
 public interface UserService {
-
+    // Service接口写出整体方法，Impl具体实施通过继承重写
     InsertUserOutput insertUser(InsertUserInput input);
 
     UpdateUserOutput updateUser(UpdateUserInput input);
@@ -24,4 +22,6 @@ public interface UserService {
     SelectUserListOutput selectUserByUserName(String username);
 
     SelectUserListOutput selectUser(int limit, int offset);
+
+    RegisterUserOutput registerUser(RegisterUserInput input) throws Exception;
 }

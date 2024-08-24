@@ -9,4 +9,7 @@ public class ErrorMessage {
     final public static String usernameIsTooShort = "username is too short";
 
     final public static String usernameIsTooLong = "username is too long";
+
+    final public static String passwordIsDifferent = "password is different";
+
 }
