@@ -15,6 +15,7 @@ import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 
@@ -103,6 +104,8 @@ public class UserServiceImpl implements UserService {
         return new SelectUserListOutput(total, list);
     }
 
+
+
     @Override
     public SelectUserOutput selectUserById(Long id) {
         return SelectUserOutput.of(userMapper.selectUserById(id));
@@ -136,4 +139,16 @@ public class UserServiceImpl implements UserService {
         return new SelectUserListOutput(total, list);
     }
 
+    // 禁止用户
+    public Long banUser(Long userId) {
+        Optional<User> optionalUser = Optional.ofNullable(userMapper.selectUserById(userId));
+        if (optionalUser.isEmpty()) {
+            throw new IllegalArgumentException("User " + userId + " not found");
+        }
+        User user = optionalUser.get();
+        boolean current_banstatus=user.isBan();
+//        user.setBan(!current_banstatus);
+        userMapper.updateUserIsBanById(userId, !current_banstatus);
+        return userId;
+    }
 }

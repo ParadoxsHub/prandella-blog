@@ -23,5 +23,7 @@ public interface UserService {
 
     SelectUserListOutput selectUser(int limit, int offset);
 
+    Long banUser(Long userId);
+
     RegisterUserOutput registerUser(RegisterUserInput input) throws Exception;
 }
