@@ -12,4 +12,10 @@ public class ErrorMessage {
 
     final public static String passwordIsDifferent = "password is different";
 
+    final public static String passwordIsFalse = "password is false";
+
+    final public static String userIsNotRegistered = "user is not registered";
+
+    final public static String userIsNotAuthorized = "user is not authorized";
+
 }

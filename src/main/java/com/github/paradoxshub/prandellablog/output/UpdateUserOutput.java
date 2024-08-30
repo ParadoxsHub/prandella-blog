@@ -21,6 +21,15 @@ public class UpdateUserOutput {
     private boolean admin;
     private boolean ban;
     private String avatar;
+    private String phonenumber;
+
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
 
     public UpdateUserOutput() {
     }
@@ -32,6 +41,7 @@ public class UpdateUserOutput {
         this.age = user.getAge();
         this.email = user.getEmail();
         this.avatar = user.getAvatar();
+        this.phonenumber = user.getPhonenumber();
     }
 
     public String getUsername() {
@@ -183,6 +193,7 @@ public class UpdateUserOutput {
         output.setAdmin(user.isAdmin());
         output.setBan(user.isBan());
         output.setAvatar(user.getAvatar());
+        output.setPhonenumber(user.getPhonenumber());
         return output;
     }
 }

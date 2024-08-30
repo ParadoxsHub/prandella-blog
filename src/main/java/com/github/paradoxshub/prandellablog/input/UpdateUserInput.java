@@ -41,7 +41,18 @@ public class UpdateUserInput {
     @JsonProperty(value = "admin")
     private boolean admin;
 
-    public UpdateUserInput(Long id, String username, String password, String email, String nickname, int gender, int age, boolean admin) {
+    @JsonProperty(value = "phonenumber")
+    private String phonenumber;
+
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
+    public UpdateUserInput(Long id, String username, String password, String email, String nickname, int gender, int age, boolean admin,String phonenumber) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -50,6 +61,7 @@ public class UpdateUserInput {
         this.gender = gender;
         this.age = age;
         this.admin = admin;
+        this.phonenumber = phonenumber;
     }
 
     public UpdateUserInput() {

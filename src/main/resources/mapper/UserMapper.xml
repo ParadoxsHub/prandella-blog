@@ -23,6 +23,20 @@
                 );
     </insert>
 
+    <insert id="insertLoginHistory" parameterType="com.github.paradoxshub.prandellablog.entity.User"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        insert into "login_history" (user_id, user_agent, login_at, ip_address,
+                            login_success, failure_reason)
+        values (#{user_id},
+                #{user_agent},
+                #{login_at},
+                #{ip_address},
+                #{login_success},
+                #{failure_reason}
+               );
+    </insert>
+
     <update id="updateUser" parameterType="com.github.paradoxshub.prandellablog.entity.User">
         update "user"
         set
@@ -31,7 +45,8 @@
             email = #{email},
             nickname = #{nickname},
             gender = #{gender},
-            age = #{age}
+            age = #{age},
+            phonenumber = #{phonenumber}
         where id = #{id};
     </update>
 
@@ -51,6 +66,10 @@
         select * from "user" where email = #{email};
     </select>
 
+    <select id="selectUserByPhonenumber" resultType="com.github.paradoxshub.prandellablog.entity.User">
+        select * from "user" where phonenumber = #{phonenumber};
+    </select>
+
     <select id="selectUsersTotal" resultType="java.lang.Long">
         select count(*) from "user";
     </select>
@@ -59,12 +78,14 @@
         select * from "user" limit #{limit} offset #{offset};
     </select>
 
+    <select id="selectLoginHistory" resultType="com.github.paradoxshub.prandellablog.entity.LoginHistory">
+        select * from "login_history" limit #{limit} offset #{offset};
+    </select>
+
     <update id="updateUserIsBanById" >
         update "user"
         set
             is_ban = #{ban}
         where id = #{id};
     </update>
-
-
 </mapper>

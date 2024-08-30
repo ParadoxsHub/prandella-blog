@@ -1,6 +1,7 @@
 package com.github.paradoxshub.prandellablog.service;
 
 import com.github.paradoxshub.prandellablog.input.InsertUserInput;
+import com.github.paradoxshub.prandellablog.input.LoginInput;
 import com.github.paradoxshub.prandellablog.input.RegisterUserInput;
 import com.github.paradoxshub.prandellablog.input.UpdateUserInput;
 import com.github.paradoxshub.prandellablog.output.*;
@@ -21,9 +22,16 @@ public interface UserService {
 
     SelectUserListOutput selectUserByUserName(String username);
 
+    SelectUserListOutput selectUserByPhonenumber(String phonenumber);
+
     SelectUserListOutput selectUser(int limit, int offset);
+
+    LoginHistoryListOutput selectLoginHistory(int limit, int offset);
 
     Long banUser(Long userId);
 
-    RegisterUserOutput registerUser(RegisterUserInput input) throws Exception;
+    RegisterUserOutput register(RegisterUserInput input) throws Exception;
+
+    LoginOutput login(LoginInput input);
+
 }

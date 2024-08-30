@@ -3,43 +3,36 @@ package com.github.paradoxshub.prandellablog.controller;
 import com.github.paradoxshub.prandellablog.common.ErrorCode;
 import com.github.paradoxshub.prandellablog.common.ErrorMessage;
 import com.github.paradoxshub.prandellablog.input.InsertUserInput;
+import com.github.paradoxshub.prandellablog.input.LoginInput;
 import com.github.paradoxshub.prandellablog.input.RegisterUserInput;
 import com.github.paradoxshub.prandellablog.input.UpdateUserInput;
 import com.github.paradoxshub.prandellablog.output.*;
 import com.github.paradoxshub.prandellablog.service.UserService;
 import com.github.paradoxshub.prandellablog.util.AesEncryptUtils;
+import com.github.paradoxshub.prandellablog.util.TokenUtils;
 import com.github.paradoxshub.prandellablog.util.RSAUtils;
+import com.github.paradoxshub.prandellablog.util.ServletUtil;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.coyote.http11.filters.SavedRequestInputFilter;
-import org.springdoc.core.converters.models.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Sort;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.*;
 
-import static com.github.paradoxshub.prandellablog.common.ErrorMessage.passwordIsDifferent;
 
 @RestController
 public class UserController {
-
     final private UserService userService;
-
-//    @Value("${aes.key}")
-//    private String aesKey;
 
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
-
 
     @ApiResponse(responseCode = "200", description = "register success",
             content = {@Content(mediaType = "application/json",
@@ -66,8 +59,48 @@ public class UserController {
         input.setFirstPassword(Arrays.toString(encrypted));
         input.setSecondPassword(Arrays.toString(encrypted));
 
-        return BaseResponse.ok(userService.registerUser(input));
+        return BaseResponse.ok(userService.register(input));
     }
+
+    @ApiResponse(responseCode = "200", description = "login success",content = {@Content(mediaType = "application/json", schema = @Schema(implementation = LoginOutput.class))})
+    @RequestMapping(value = "api/v1/login", method = RequestMethod.POST)
+    @ResponseBody
+    public Response login(@RequestBody @Validated LoginInput input){
+        System.out.println(ServletUtil.getIpAddr());
+        LoginOutput output = userService.login(input);
+        if (Objects.equals(output.getMessage(), "登陆成功")){
+            return BaseResponse.ok(output);
+        } else if (output.getMessage().equals("登陆失败，密码错误")){
+            return BaseResponse.error(ErrorCode.passwordIsFalse,ErrorMessage.passwordIsFalse);
+        } else if (output.getMessage().equals("该账户未注册")) {
+            return BaseResponse.error(ErrorCode.userIsNotRegistered,ErrorMessage.userIsNotRegistered);
+        }
+        return BaseResponse.ok(output);
+    }
+
+    @ApiResponse(responseCode = "200", description = "search login success",content = {@Content(mediaType = "application/json", schema = @Schema(implementation = LoginOutput.class))})
+    @RequestMapping(value = "api/v1/loginHistory", method = RequestMethod.GET)
+    @ResponseBody
+    public Response loginHistory(@RequestParam int limit,
+                                 @RequestParam int offset){
+        // limit 2 offset 1,指的从第一条开始取两条
+        RequestAttributes attributes = RequestContextHolder.getRequestAttributes();
+        if (Objects.isNull(attributes)) {
+            throw new RuntimeException();
+        }
+        // 获取Request的方法
+        // ServletRequestAttributes attributes= (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        // HttpServletRequest request= Objects.requireNonNull(attributes).getRequest();
+
+        // 验证令牌
+        if (!TokenUtils.verifyToken()) {
+            return BaseResponse.error(ErrorCode.userIsNotAuthorized,ErrorMessage.userIsNotAuthorized);
+        }
+        LoginHistoryListOutput output = userService.selectLoginHistory(limit,offset);
+        return BaseResponse.ok(output);
+    }
+
+
 
     @ApiResponse(responseCode = "200", description = "insert a user success",
             content = {@Content(mediaType = "application/json",
@@ -112,13 +145,16 @@ public class UserController {
             @RequestParam int limit,
             @RequestParam int offset,
             @RequestParam(required = false) String username,
-            @RequestParam(required = false) String email
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) String phonenumber
     ) {
         Object output = null;
         if (StringUtils.isNoneEmpty(username)){
             output = userService.selectUserByUserName(username);
         } else if (StringUtils.isNoneEmpty(email)) {
             output = userService.selectUserByEmail(email);
+        }else if (StringUtils.isNoneEmpty(phonenumber)){
+            output = userService.selectUserByPhonenumber(phonenumber);
         }else {
             output = userService.selectUser(limit, offset);
         }
@@ -150,5 +186,4 @@ public class UserController {
             return BaseResponse.error("Failed to ban user with ID "+userId+".");
         }
     }
-
 }

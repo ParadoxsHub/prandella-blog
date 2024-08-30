@@ -11,22 +11,23 @@ CREATE TABLE if not exists version
 -- 用户表
 create table if not exists "user"
 (
-    id         bigserial                   not null,
-    username   varchar(16)                 not null,
-    nickname   varchar(16)                 not null,
-    password   varchar(1024)               not null,
-    email      varchar(64)                 not null,
-    created_by bigint                      not null,
-    updated_by bigint                      not null,
-    deleted_by bigint                      default NULL,
-    created_at timestamp without time zone not null,
-    updated_at timestamp without time zone not null,
-    deleted_at timestamp without time zone default NULL,
-    age        smallint,
-    gender     smallint,
-    is_admin   boolean,
-    is_ban     boolean,
-    avatar     text,
+    id          bigserial                   not null,
+    username    varchar(16)                 not null,
+    nickname    varchar(16)                 not null,
+    password    varchar(1024)               not null,
+    email       varchar(64)                 not null,
+    created_by  bigint                      not null,
+    updated_by  bigint                      not null,
+    deleted_by  bigint                      default NULL,
+    created_at  timestamp without time zone not null,
+    updated_at  timestamp without time zone not null,
+    deleted_at  timestamp without time zone default NULL,
+    age         smallint,
+    gender      smallint,
+    is_admin    boolean,
+    is_ban      boolean,
+    avatar      text,
+    phonenumber varchar(11)
     primary key (id)
 );
 

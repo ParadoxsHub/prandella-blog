@@ -20,11 +20,21 @@ public class User {
     private boolean is_ban;
     private String avatar;
 
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
+    private String phonenumber;
+
     public User() {
     }
 
 
-    public User(Long id, String username, String password, String email, String nickname,int gender,int age){
+    public User(Long id, String username, String password, String email, String nickname,int gender,int age,String phonenumber){
         this.username = username;
         this.id = id;
         this.password = password;
@@ -32,6 +42,7 @@ public class User {
         this.nickname = nickname;
         this.gender = gender;
         this.age = age;
+        this.phonenumber = phonenumber;
     }
 
     public String getUsername() {
